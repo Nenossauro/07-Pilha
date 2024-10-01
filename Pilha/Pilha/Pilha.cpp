@@ -59,7 +59,7 @@ void menu()
 void inicializar()
 {
 
-	// se a lista j� possuir elementos
+	// se a lista já possuir elementos
 	// libera a memoria ocupada
 	NO* aux = topo;
 	while (aux != NULL) {
@@ -84,8 +84,10 @@ void push()
 	}
 
 	cout << "Digite o elemento: ";
-	cin >> novo->valor;
-	novo->prox = NULL;
+	cin >> novo->valor; 
+	novo->prox = topo; 
+	topo = novo;
+	
 
 
 }
@@ -93,6 +95,22 @@ void push()
 void pop()
 {
 
+	NO* aux = topo; 
+	NO* paraExcluir = aux; 
+	if (aux == NULL) {
+		cout << "A pilha está vazia." << endl;
+		return; 
+	}
+	else if (aux->prox == NULL) {
+		// Se o único elemento na pilha
+		cout << "Elemento apagado: \n" << paraExcluir->valor << endl;
+		topo = NULL; // Limpa a pilha
+	}
+	else {
+		topo = aux->prox; // Move topo para o próximo
+		cout << "Elemento apagado: \n" << paraExcluir->valor << endl;
+		free(paraExcluir); // Libera a memória do elemento excluído
+	}
 	
 
 }
